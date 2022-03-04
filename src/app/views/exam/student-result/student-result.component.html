@@ -1,84 +1,108 @@
 <p-toast position="top-right" key="success"></p-toast>
 <p-card>
-    <p-tabView styleClass="tabview-custom" (onChange)="handleChange($event)">
-        <p-tabPanel>
-            <ng-template pTemplate = "header">
-                <i class="pi pi-calendar"></i>
-                <span>Current Results</span>
-            </ng-template>
-           
-            <ng-template pTemplate = "content">
-                <mat-grid-list cols="2" rowHeight="2.5rem">
-                    <mat-grid-tile>Stuent Name : <b>{{ student_details?.student_name }} </b></mat-grid-tile>
-                    <mat-grid-tile>Class: <b>{{ student_details?.class }}</b></mat-grid-tile>
-                    <mat-grid-tile>Test Name: <b>{{ student_details?.exam_name }}</b></mat-grid-tile>
-                    <mat-grid-tile>TERM: <b>{{ student_details?.term }}</b>&nbsp; OF &nbsp; <b>{{ student_details?.academic_year }}</b></mat-grid-tile>
-                </mat-grid-list>
-            
-                <div class="p-ml-4">
-                     Overall Performance: Division <b>{{ result_summary?.division }} </b> Point <b>{{result_summary?.point}}</b> 
-                </div>
-                <p-table [value]="results">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th >Subject</th>
-                            <th >Marks</th>
-                            <th >Grade</th>
-                            <th>Remarks</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-result>
-                        <tr>
-                            <td>{{ result?.item }} </td>
-                            <td>{{ result?.marks }} </td>
-                            <td>{{ result?.grade }} </td>
-                            <td>{{ result?.remark }} </td>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="summary">
-                       Her/His position in the <u> {{ student_details?.class }} </u> class is <u> {{ result_summary?.position }}
-                       </u> out of <u> {{ result_summary?.total_students }} </u> students 
-                    </ng-template>
-                </p-table>
-                <form [formGroup]="parentFeebackForm">
-                    <h2 class="p-mt-4">Parent's feedback </h2>
-                <div *ngIf="feedback">
-                    {{ feedback?.message }}
-                </div>
-                <div *ngIf="feedback == null">
-                    <p>Please fill this form properly. The message will be sent to the class teacher.</p>
-                <div class="p-fluid p-grid p-mt-2">
-                    
-                    <div class="p-field p-col-12 p-md-12">
-                        <textarea pInputTextarea id="message" formControlName="message" rows="5" ></textarea>
-                    </div>
-                    <div class="p-field p-col-12 p-md-10"></div>
-                    <div class="p-field p-col-12 p-md-2">
-                        <p-button type="submit" [disabled]="!parentFeebackForm.valid" label="Submit"
-                        (click)="submitFeedback()"></p-button>
-                    </div>
-                </div> 
-                </div>
-               </form> 
-            </ng-template>
-            
-        </p-tabPanel>
-        <p-tabPanel>
-            <ng-template pTemplate = "header">
-                <i class="pi pi-search"></i>
-                <span>Final Results</span>
-            </ng-template>
-            <ng-template pTemplate = "body">
-                <ngx-extended-pdf-viewer 
-                  [src]="'assets/report/4/2-2-109.pdf'" 
-                  [useBrowserLocale]="true"
-                  [height]="'100%'"
-                  [useBrowserLocale]="true" 
-                  [textLayer]="true"
-                  [showHandToolButton]="true">
-                </ngx-extended-pdf-viewer>
-            </ng-template>
+  <p-tabView styleClass="tabview-custom" (onChange)="handleChange($event)">
+    <p-tabPanel>
+      <ng-template pTemplate="header">
+        <i class="pi pi-calendar"></i>
+        <span>Current Results</span>
+      </ng-template>
 
-        </p-tabPanel>
-    </p-tabView>
+      <ng-template pTemplate="content">
+        <mat-grid-list cols="2" rowHeight="2.5rem">
+          <mat-grid-tile
+            >Stuent Name :
+            <b>{{ student_details?.student_name }} </b></mat-grid-tile
+          >
+          <mat-grid-tile
+            >Class: <b>{{ student_details?.class }}</b></mat-grid-tile
+          >
+          <mat-grid-tile
+            >Test Name: <b>{{ student_details?.exam_name }}</b></mat-grid-tile
+          >
+          <mat-grid-tile
+            >TERM: <b>{{ student_details?.term }}</b
+            >&nbsp;OF&nbsp;
+            <b>{{ student_details?.academic_year }}</b></mat-grid-tile
+          >
+        </mat-grid-list>
+
+        <div class="p-ml-4">
+          Overall Performance: Division
+          <b>{{ result_summary?.division }} </b> Point
+          <b>{{ result_summary?.point }}</b>
+        </div>
+        <p-table [value]="results">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Subject</th>
+              <th>Marks</th>
+              <th>Grade</th>
+              <th>Remarks</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-result>
+            <tr>
+              <td>{{ result?.item }}</td>
+              <td>{{ result?.marks }}</td>
+              <td>{{ result?.grade }}</td>
+              <td>{{ result?.remark }}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            Her/His position in the <u> {{ student_details?.class }} </u> class
+            is <u> {{ result_summary?.position }} </u> out of
+            <u> {{ result_summary?.total_students }} </u> students
+          </ng-template>
+        </p-table>
+        <form [formGroup]="parentFeebackForm">
+          <h2 class="p-mt-4">Parent's feedback</h2>
+          <div *ngIf="feedback">
+            {{ feedback?.message }}
+          </div>
+          <div *ngIf="feedback == null">
+            <p>
+              Please fill this form properly. The message will be sent to the
+              class teacher.
+            </p>
+            <div class="p-fluid p-grid p-mt-2">
+              <div class="p-field p-col-12 p-md-12">
+                <textarea
+                  pInputTextarea
+                  id="message"
+                  formControlName="message"
+                  rows="5"
+                ></textarea>
+              </div>
+              <div class="p-field p-col-12 p-md-10"></div>
+              <div class="p-field p-col-12 p-md-2">
+                <p-button
+                  type="submit"
+                  [disabled]="!parentFeebackForm.valid"
+                  label="Submit"
+                  (click)="submitFeedback()"
+                ></p-button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+    </p-tabPanel>
+    <p-tabPanel>
+      <ng-template pTemplate="header">
+        <i class="pi pi-search"></i>
+        <span>Final Results</span>
+      </ng-template>
+      <ng-template pTemplate="body">
+        <ngx-extended-pdf-viewer
+          [src]="'assets/report/4/2-2-109.pdf'"
+          [useBrowserLocale]="true"
+          [height]="'100%'"
+          [useBrowserLocale]="true"
+          [textLayer]="true"
+          [showHandToolButton]="true"
+        >
+        </ngx-extended-pdf-viewer>
+      </ng-template>
+    </p-tabPanel>
+  </p-tabView>
 </p-card>

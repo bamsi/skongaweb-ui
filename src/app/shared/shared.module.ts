@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimengModule } from './primeng/primeng.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { LogoComponent } from './logo/logo.component'; 
+import { LogoComponent } from './logo/logo.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { NgxPermissionsModule } from 'ngx-permissions';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [
-    LogoComponent
-  ],
+  declarations: [LogoComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -28,7 +28,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MatGridListModule
+    MatGridListModule,
+    NgxPermissionsModule,
+    MatCheckboxModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -41,7 +43,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MatGridListModule
-  ]
+    MatGridListModule,
+    NgxPermissionsModule,
+    MatCheckboxModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
