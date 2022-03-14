@@ -37,17 +37,12 @@ const prime_modules = [
   ConfirmDialogModule,
   MessagesModule,
   MessageModule,
-  PanelMenuModule
-]
+  PanelMenuModule,
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    prime_modules
-  ],
-  exports: [
-    prime_modules
-  ]
+  imports: [CommonModule, prime_modules],
+  exports: [prime_modules],
 })
-export class PrimengModule { }
+export class PrimengModule {}
