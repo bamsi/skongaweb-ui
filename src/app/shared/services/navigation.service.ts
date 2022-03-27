@@ -23,11 +23,25 @@ export class NavigationService {
         permission: 'STUDENT_RESULT',
       },
       {
-        name: 'Register Student',
+        name: 'Assign Student Subject',
         type: 'link',
         icon: 'person_add',
         state: 'main/exam/student-subject',
         permission: 'REGISTER_STUDENT_SUBJECT',
+      },
+      {
+        name: 'Upload Result',
+        type: 'link',
+        icon: 'assessment',
+        state: 'main/exam/upload-result',
+        permission: 'UPLOAD_STUDENT_RESULTS',
+      },
+      {
+        name: 'Register Teacher',
+        type: 'link',
+        icon: 'person_add',
+        state: 'main/teacher/register-teacher',
+        permission: 'REGISTER_TEACHER',
       },
       {
         name: 'Profile',

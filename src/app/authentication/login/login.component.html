@@ -1,39 +1,44 @@
 <div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+  <p-card [style]="{ width: '40rem' }" styleClass="p-card-shadow">
+    <p-messages [(value)]="errorMessage" [enableService]="false"></p-messages>
 
-    <p-card [style]="{width: '40rem'}" styleClass="p-card-shadow">
+    <ng-template pTemplate="header"> Login </ng-template>
 
-        <p-messages [(value)]="errorMessage" [enableService]="false"></p-messages>
+    <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="login()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="username">Username</label>
+          <input
+            formControlName="username"
+            id="username"
+            type="text"
+            pInputText
+          />
+        </div>
+        <div class="p-field" style="margin-top: 1rem; margin-bottom: 1rem">
+          <label for="password">Password</label>
+          <input
+            formControlName="password"
+            id="password"
+            type="password"
+            pInputText
+          />
+        </div>
+        <div class="p-field">
+          <button
+            pButton
+            pRipple
+            type="submit"
+            label="Login"
+            [disabled]="!loginForm.valid"
+          ></button>
+        </div>
+      </div>
+    </form>
 
-        <ng-template pTemplate="header">
-            Login
-        </ng-template>
-    
-        <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="login()">
-            <div class="p-fluid">
-                <div class="p-field">
-                    <label for="username">Username</label>
-                    <input formControlName="username" id="username" type="text" pInputText> 
-                </div>
-                <div class="p-field" style="margin-top: 1rem; margin-bottom: 1rem;">
-                    <label for="password">Password</label>
-                    <input formControlName="password" id="password" type="password" pInputText> 
-                </div>
-                <div class="p-field">
-                    <button pButton pRipple type="submit" label="Login" [disabled]="!loginForm.valid"></button>
-                </div>
-            </div>
-        </form>
-    
-        <ng-template pTemplate="footer">
-            <div>
-                Need Help? Please contact Administrator
-            </div> 
-            <div class="copyright">
-                copyright&copy;skongaweb.com
-            </div>
-        </ng-template>
-    </p-card>
+    <ng-template pTemplate="footer">
+      <div>Need Help? Please contact Administrator</div>
+      <div class="copyright">copyright&copy;skongaweb.com</div>
+    </ng-template>
+  </p-card>
 </div>
-
-
-

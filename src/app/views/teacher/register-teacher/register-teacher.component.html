@@ -1,0 +1,101 @@
+<p-toast position="top-right" key="success"></p-toast>
+<p-card>
+  <div class="grid justify-content-end">
+    <div class="p-col">
+      <button
+        pButton
+        #submit
+        type="button"
+        label="Add Teacher"
+        icon="pi pi-plus"
+        iconPos="left"
+        (click)="showDialog()"
+        class="p-button-success"
+        style="float: right"
+      ></button>
+    </div>
+  </div>
+  <p-table
+    #dt
+    [value]="register_teacher?.teacher"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="[
+      'first_name',
+      'last_name',
+      'gender',
+      'phone',
+      'status'
+    ]"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Registered Teacher</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" placeholder="Search teacher..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">SNo</th>
+        <th pSortableColumn="first_name">
+          Name <p-sortIcon field="first_name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="gender">
+          Gender <p-sortIcon field="gender"></p-sortIcon>
+        </th>
+        <th pSortableColumn="phone">
+          Phone <p-sortIcon field="gender"></p-sortIcon>
+        </th>
+        <th pSortableColumn="email">
+          Email <p-sortIcon field="gender"></p-sortIcon>
+        </th>
+        <th pSortableColumn="status">
+          Is Active <p-sortIcon field="active"></p-sortIcon>
+        </th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-i="rowIndex" let-result>
+      <tr>
+        <td>{{ i + 1 }}</td>
+        <td>
+          {{
+            result.first_name +
+              " " +
+              result.middle_name +
+              " " +
+              result.last_name
+          }}
+        </td>
+        <td>{{ result.gender }}</td>
+        <td>{{ result.phone }}</td>
+        <td>{{ result.email }}</td>
+        <td>
+          <i
+            [ngClass]="
+              result.active ? 'pi pi-check-circle' : 'pi pi-times-circle'
+            "
+          ></i>
+        </td>
+        <td>
+          <i class="pi pi-pencil" (click)="updateTeacher(result)"></i> &nbsp;
+          <i class="pi pi-trash" (click)="deleteTeacher(result)"></i>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are
+        {{ register_teacher?.teacher ? register_teacher.teacher.length : 0 }}
+        teacher.
+      </div>
+    </ng-template>
+  </p-table>
+</p-card>

@@ -5,8 +5,8 @@ import { HomeComponent } from './layout/private/home/home.component';
 
 const routes: Routes = [
   {
-    path: '', 
-    component: LoginComponent, 
+    path: '',
+    component: LoginComponent,
     loadChildren: () =>
       import('./authentication/authentication.module').then(
         (module) => module.AuthenticationModule
@@ -33,15 +33,21 @@ const routes: Routes = [
           import('./views/exam/exam-result.module').then(
             (module) => module.ExamResultModule
           ),
-        
-      }
-    ]
-  }
- 
+      },
+      {
+        path: 'teacher',
+        data: { breadcrumb: 'Teacher Module' },
+        loadChildren: () =>
+          import('./views/teacher/teacher.module').then(
+            (module) => module.TeacherModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

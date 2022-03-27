@@ -1,47 +1,111 @@
 <p-toast position="top-right" key="success"></p-toast>
-
-<div class="p-fluid grid formgrid">
-  <div class="field col-12 md:col-4">
-    <span class="p-float-label">
-      <p-dropdown
-        inputId="id"
-        [autoDisplayFirst]="false"
-        [options]="subject?.teacher_subjects"
-        [(ngModel)]="subject_id"
-        optionLabel="name"
-        optionValue="id"
-      ></p-dropdown>
-      <label for="subject">Subject</label>
-    </span>
+<p-card>
+  <div class="p-fluid grid">
+    <div class="field col-12 md:col-4">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="id"
+          [autoDisplayFirst]="false"
+          [options]="subject?.teacher_subjects"
+          [(ngModel)]="subject_id"
+          optionLabel="name"
+          optionValue="id"
+        ></p-dropdown>
+        <label for="subject">Subject</label>
+      </span>
+    </div>
+    <div class="field col-12 md:col-4">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="id"
+          [autoDisplayFirst]="false"
+          [options]="grade?.class"
+          [(ngModel)]="class_id"
+          optionLabel="name"
+          optionValue="id"
+          (onChange)="registeredStudent()"
+        ></p-dropdown>
+        <label for="class">Class</label>
+      </span>
+    </div>
   </div>
 
-  <div class="field col-12 md:col-4">
-    <span class="p-float-label">
-      <p-dropdown
-        inputId="id"
-        [autoDisplayFirst]="false"
-        [options]="grade?.class"
-        [(ngModel)]="class_id"
-        optionLabel="name"
-        optionValue="id"
-        (onChange)="registeredStudent()"
-      ></p-dropdown>
-      <label for="class">Class</label>
-    </span>
+  <div class="p-fluid grid justify-content-end">
+    <div class="field col-12 md:col-3">
+      <button
+        pButton
+        #submit
+        type="button"
+        label="Submit"
+        icon="pi pi-save"
+        iconPos="left"
+        (click)="submitResult()"
+        class="p-button"
+        style="float: right"
+        disabled
+      ></button>
+    </div>
   </div>
-
-  <div class="field col-12 md:col-4">
-    <button
-      pButton
-      #submit
-      type="button"
-      label="Submit"
-      icon="pi pi-save"
-      iconPos="left"
-      (click)="submitResult()"
-      class="p-button"
-      style="float: right"
-      disabled
-    ></button>
-  </div>
-</div>
+  <p-table
+    #dt
+    [value]="register_student?.result"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="['name', 'gender']"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Registered students</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" placeholder="Search student..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <mat-checkbox
+            [checked]="allRegistered"
+            [indeterminate]="someComplete()"
+            (change)="setAll($event.checked)"
+          ></mat-checkbox>
+        </th>
+        <th pSortableColumn="name">
+          Name <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="gender">
+          Gender <p-sortIcon field="gender"></p-sortIcon>
+        </th>
+        <th pSortableColumn="status">
+          Is Registered <p-sortIcon field="status"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-result>
+      <tr>
+        <td>
+          <mat-checkbox
+            [value]="result"
+            [(ngModel)]="result.is_registered"
+            [checked]="true"
+            (ngModelChange)="updateAllComplete()"
+          ></mat-checkbox>
+        </td>
+        <td>{{ result.name }}</td>
+        <td>{{ result.gender }}</td>
+        <td><i class="pi pi-check-circle" *ngIf="result.is_registered"></i></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are
+        {{ register_student?.result ? register_student.length : 0 }} students.
+      </div>
+    </ng-template>
+  </p-table>
+</p-card>

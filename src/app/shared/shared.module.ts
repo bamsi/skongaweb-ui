@@ -13,6 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [LogoComponent],
@@ -31,6 +32,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatGridListModule,
     NgxPermissionsModule,
     MatCheckboxModule,
+    MatRadioModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -46,6 +48,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatGridListModule,
     NgxPermissionsModule,
     MatCheckboxModule,
+    MatRadioModule,
   ],
 })
 export class SharedModule {}

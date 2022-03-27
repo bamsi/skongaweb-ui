@@ -1,0 +1,193 @@
+<p-card>
+  <form [formGroup]="teacherForm">
+    <div class="p-fluid grid">
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="first_name"
+            pInputText
+            formControlName="first_name"
+          />
+          <label for="First Name">First Name</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="middle_name"
+            pInputText
+            formControlName="middle_name"
+          />
+          <label for="Middle Name">Middle Name</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="last_name"
+            pInputText
+            formControlName="last_name"
+          />
+          <label for="Last Name">Last Name</label>
+        </span>
+      </div>
+    </div>
+    <div class="p-fluid grid">
+      <div class="field col-12 md:col-4">
+        <div>
+          <div class="d-horizontal">Gender:</div>
+          <p-radioButton
+            name="gender"
+            value="M"
+            inputId="male"
+            label="Male"
+            formControlName="gender"
+          ></p-radioButton>
+          <p-radioButton
+            name="gender"
+            value="F"
+            inputId="female"
+            label="Female"
+            formControlName="gender"
+          ></p-radioButton>
+        </div>
+      </div>
+
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="address"
+            pInputText
+            formControlName="address"
+          />
+          <label for="Address">Address</label>
+        </span>
+      </div>
+
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="phone"
+            pInputText
+            formControlName="phone"
+            pattern="[1-9]{12}"
+            required
+          />
+          <label for="Phone">Phone (eg. 255717777777)</label>
+        </span>
+      </div>
+    </div>
+    <div class="p-fluid grid">
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="email"
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+            pInputText
+            formControlName="email"
+            required
+          />
+          <label for="Email">Email</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4">
+        <div class="form-group form-check p-mt-2">
+          <input
+            type="checkbox"
+            [value]="false"
+            formControlName="class_teacher"
+            id="class_teacher"
+          />
+          <label for="class_teacher">Class teacher?</label>
+        </div>
+      </div>
+    </div>
+
+    <h3>Add Subject</h3>
+    <div formArrayName="subjects">
+      <div *ngFor="let sub of subjectsFormArr.controls; let i = index">
+        <div class="p-fluid grid p-mt-2" [formGroupName]="i">
+          <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+              <p-dropdown
+                inputId="subject"
+                [autoDisplayFirst]="false"
+                formControlName="subject_id"
+                optionLabel="name"
+                optionValue="id"
+                [options]="subjects?.subject"
+                name="v{{ i }}"
+              ></p-dropdown>
+              <label for="subject">Subject</label>
+            </span>
+          </div>
+          <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+              <p-dropdown
+                inputId="class"
+                [autoDisplayFirst]="false"
+                formControlName="class_id"
+                optionLabel="name"
+                optionValue="id"
+                [options]="grades?.class"
+                name="v{{ i }}"
+              ></p-dropdown>
+              <label for="class">Class</label>
+            </span>
+          </div>
+          <div class="field col-12 md:col-2">
+            <p-button
+              type="button"
+              icon="pi pi-minus"
+              iconPos="left"
+              label="Remove"
+              (click)="removeRound(i)"
+              styleClass="p-button-outlined p-button-danger"
+            ></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-fluid grid">
+      <div class="field col-12 md:col-8"></div>
+      <div class="field col-12 md:col-2 justify-content-end">
+        <p-button
+          type="button"
+          icon="pi pi-plus"
+          iconPos="left"
+          label="Add"
+          (click)="addRound()"
+          styleClass="p-button-outlined p-button-primary"
+        ></p-button>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <div class="p-fluid grid justify-content-end">
+      <div class="field col-12 md:col-2">
+        <p-button
+          icon="pi pi-close"
+          (click)="closeDialog()"
+          label="Cancel"
+          styleClass="p-button-outlined p-button-danger"
+        ></p-button>
+      </div>
+      <div class="p-fluid field col-12 md:col-2">
+        <p-button
+          icon="pi pi-check"
+          (click)="submitForm()"
+          label="Save"
+          styleClass="p-button-info"
+          [disabled]="!teacherForm.valid"
+        ></p-button>
+      </div>
+    </div>
+  </ng-template>
+</p-card>

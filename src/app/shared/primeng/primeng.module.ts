@@ -18,6 +18,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 const prime_modules = [
   InputTextModule,
@@ -38,6 +39,7 @@ const prime_modules = [
   MessagesModule,
   MessageModule,
   PanelMenuModule,
+  DynamicDialogModule,
 ];
 
 @NgModule({

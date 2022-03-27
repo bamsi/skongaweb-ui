@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { LocalStoreService } from 'src/app/shared/services/ls.service';
 import { ResultService } from 'src/app/shared/services/result.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
+import { TeacherService } from 'src/app/shared/services/teacher.service';
 
 @Component({
   selector: 'app-register-student-subject',
@@ -23,16 +25,17 @@ export class RegisterStudentSubjectComponent implements OnInit {
   constructor(
     private ls: LocalStoreService,
     private messageService: MessageService,
-    private _resultSvc: ResultService
+    private _resultSvc: ResultService,
+    private _sharedSvc: SharedService,
+    private _teacherSvc: TeacherService
   ) {}
 
   @ViewChild('submit') button: { nativeElement: { disabled: boolean } } | any;
 
   ngOnInit(): void {
     this.app_user = this.ls.getItem('APP_USER');
-    console.log(this.app_user);
     this.institution_id = this.app_user?.institution_id;
-    this._resultSvc.getTeacherSubject().subscribe(
+    this._teacherSvc.getTeacherSubject().subscribe(
       (response) => {
         this.subject = response;
       },
@@ -46,7 +49,7 @@ export class RegisterStudentSubjectComponent implements OnInit {
       }
     );
 
-    this._resultSvc.getGrade(this.institution_id).subscribe(
+    this._sharedSvc.getGrade(this.institution_id).subscribe(
       (response) => {
         this.grade = response;
       },

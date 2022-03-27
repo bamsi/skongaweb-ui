@@ -19,22 +19,6 @@ export class ResultService {
     return this._http.post(`${this.base_uri}/parent_feedback`, payload);
   }
 
-  /**
-   * return list of subjects assigned to a teacher
-   */
-  getTeacherSubject(): Observable<any> {
-    return this._http.get(`${this.base_uri}/teacher_subject`);
-  }
-
-  /**
-   * return list of registered grades to a particular institution
-   * @param institution_id
-   * @returns
-   */
-  getGrade(institution_id: any): Observable<any> {
-    return this._http.get(`${this.base_uri}/grade/${institution_id}`);
-  }
-
   getRegisteredStudent(class_id: any, subject_id: any): Observable<any> {
     return this._http.get(
       `${this.base_uri}/registered_student_subject/${class_id}/${subject_id}`
@@ -46,5 +30,25 @@ export class ResultService {
       `${this.base_uri}/update_registered_student`,
       payload
     );
+  }
+
+  /*** get current exams list */
+  getCurrentExams(institution_id: any): Observable<any> {
+    return this._http.get(`${this.base_uri}/current_exam/${institution_id}`);
+  }
+
+  /** get list of  */
+  getTeacherClass(subject_id: any): Observable<any> {
+    return this._http.get(`${this.base_uri}/teacher_grade/${subject_id}`);
+  }
+
+  /** get student results by class id */
+  getStudentResult(payload: any): Observable<any> {
+    return this._http.post(`${this.base_uri}/student_result`, payload);
+  }
+
+  /** update student result */
+  submitResult(payload: any): Observable<any> {
+    return this._http.post(`${this.base_uri}/update_student_result`, payload);
   }
 }

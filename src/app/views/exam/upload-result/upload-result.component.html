@@ -1,0 +1,159 @@
+<p-toast position="top-right" key="success"></p-toast>
+<p-card>
+  <div class="p-fluid grid">
+    <div class="field col-12 md:col-4">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="exam_id"
+          [autoDisplayFirst]="false"
+          [options]="exam?.current_exams"
+          [(ngModel)]="exam_id"
+          optionLabel="name"
+          optionValue="id"
+        ></p-dropdown>
+        <label for="current_exam">Current Exam</label>
+      </span>
+    </div>
+    <div class="field col-12 md:col-4">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="subject_id"
+          [autoDisplayFirst]="false"
+          [options]="subject?.teacher_subjects"
+          [(ngModel)]="subject_id"
+          optionLabel="name"
+          optionValue="id"
+          (onChange)="getTeacherClass(subject_id)"
+        ></p-dropdown>
+        <label for="subject">Subject</label>
+      </span>
+    </div>
+    <div class="field col-12 md:col-4">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="class_id"
+          [autoDisplayFirst]="false"
+          [options]="grade?.teacher_grade"
+          [(ngModel)]="class_id"
+          optionLabel="name"
+          optionValue="id"
+          (onChange)="getStudentResult(class_id)"
+        ></p-dropdown>
+        <label for="class">Class</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="grid justify-content-end">
+    <div class="p-col mr-3">
+      <button
+        type="button"
+        pButton
+        pRipple
+        icon="pi pi-file-excel"
+        (click)="exportExcel()"
+        class="p-button-warning p-mr-2"
+        pTooltip="Download excel file"
+        tooltipPosition="bottom"
+        label="Download"
+        [disabled]="!results?.student_result"
+      ></button>
+    </div>
+
+    <div class="p-col mr-3">
+      <p-fileUpload
+        [disabled]="!results?.student_result"
+        mode="basic"
+        chooseLabel="Browse"
+        styleClass="green"
+        (onUpload)="onFileChange($event)"
+      ></p-fileUpload>
+    </div>
+
+    <div class="p-col">
+      <button
+        pButton
+        #submit
+        type="button"
+        label="Submit"
+        icon="pi pi-save"
+        iconPos="left"
+        class="p-button"
+        style="float: right"
+        disabled="true"
+        (click)="submitResult()"
+      ></button>
+    </div>
+  </div>
+
+  <!--display results-->
+  <p-table
+    #dt
+    [value]="results?.student_result"
+    [globalFilterFields]="[
+      'first_name',
+      'middle_name',
+      'last_name',
+      'gender',
+      'grade'
+    ]"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Record Student Results</h5>
+        <span class="p-input-icon-left">
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" placeholder="Global Search" />
+          </span>
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem">SN</th>
+        <th pSortableColumn="first_name">
+          Name <p-sortIcon field="first_name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="gender">
+          Gender <p-sortIcon field="gender"></p-sortIcon>
+        </th>
+        <th pSortableColumn="marks">
+          Marks <p-sortIcon field="marks"></p-sortIcon>
+        </th>
+        <th pSortableColumn="grade">
+          Grade <p-sortIcon field="grade"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-result let-index="rowIndex">
+      <tr>
+        <td>{{ index + 1 }}</td>
+        <td>
+          {{
+            result.first_name +
+              " " +
+              result.middle_name +
+              " " +
+              result.last_name
+          }}
+        </td>
+        <td>{{ result.gender }}</td>
+        <td>
+          <div class="p-input-filled">
+            <p-inputNumber
+              [(ngModel)]="result.marks"
+              [min]="0"
+              [max]="100"
+              mode="decimal"
+              [minFractionDigits]="2"
+              (onInput)="enableSubmitButton()"
+            ></p-inputNumber>
+          </div>
+        </td>
+        <td>{{ result.grade }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <!--end display results-->
+</p-card>

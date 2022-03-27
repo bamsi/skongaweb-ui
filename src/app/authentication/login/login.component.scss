@@ -1,15 +1,15 @@
-:host ::ng-deep{
-    .p-card-header{
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        padding-left: 2rem;
-        font-size: large;
-        background: #1a6388;
-        color: antiquewhite;
-    }
+:host ::ng-deep {
+  .p-card-header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    font-size: large;
+    background: #1a6388;
+    color: antiquewhite;
+  }
 }
 
 .copyright {
-    color: #1a6388;
-    padding-top: 2rem;
+  color: #1a6388;
+  padding-top: 2rem;
 }
