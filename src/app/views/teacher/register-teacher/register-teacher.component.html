@@ -86,16 +86,25 @@
         </td>
         <td class="icons">
           <span>
-            <i class="pi pi-plus" (click)="updateSubject(result)"></i>
+            <i
+              class="pi pi-plus"
+              (click)="updateSubject(result)"
+              pTooltip="click to update subject's assigned to teacher"
+            ></i>
           </span>
           <span>
-            <i class="pi pi-pencil" (click)="updateTeacher(result)"></i>
+            <i
+              class="pi pi-pencil"
+              (click)="updateTeacher(result)"
+              pTooltip="click to update teacher's personal details"
+            ></i>
           </span>
 
           <span>
             <i
               [ngClass]="result.active == 1 ? 'pi pi-trash' : 'pi pi-undo'"
               (click)="deleteTeacher(result)"
+              pTooltip="Click to activate or deactivate teacher"
             ></i>
           </span>
         </td>
@@ -112,7 +121,7 @@
 </p-card>
 
 <p-confirmDialog
-  [style]="{ width: '400px' }"
+  [style]="{ width: '40%' }"
   key="deleteDialog"
   [baseZIndex]="10000"
 ></p-confirmDialog>
