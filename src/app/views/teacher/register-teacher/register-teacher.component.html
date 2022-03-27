@@ -80,13 +80,24 @@
         <td>
           <i
             [ngClass]="
-              result.active ? 'pi pi-check-circle' : 'pi pi-times-circle'
+              result.active == 1 ? 'pi pi-check-circle' : 'pi pi-times-circle'
             "
           ></i>
         </td>
-        <td>
-          <i class="pi pi-pencil" (click)="updateTeacher(result)"></i> &nbsp;
-          <i class="pi pi-trash" (click)="deleteTeacher(result)"></i>
+        <td class="icons">
+          <span>
+            <i class="pi pi-plus" (click)="updateSubject(result)"></i>
+          </span>
+          <span>
+            <i class="pi pi-pencil" (click)="updateTeacher(result)"></i>
+          </span>
+
+          <span>
+            <i
+              [ngClass]="result.active == 1 ? 'pi pi-trash' : 'pi pi-undo'"
+              (click)="deleteTeacher(result)"
+            ></i>
+          </span>
         </td>
       </tr>
     </ng-template>
@@ -99,3 +110,9 @@
     </ng-template>
   </p-table>
 </p-card>
+
+<p-confirmDialog
+  [style]="{ width: '400px' }"
+  key="deleteDialog"
+  [baseZIndex]="10000"
+></p-confirmDialog>

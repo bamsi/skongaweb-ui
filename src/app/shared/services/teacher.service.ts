@@ -25,4 +25,8 @@ export class TeacherService {
   registerTeacher(payload: any): Observable<any> {
     return this._http.post(`${this.base_uri}/register_teacher`, payload);
   }
+
+  updateTeacher(payload: any) {
+    return this._http.post(`${this.base_uri}/update_teacher`, payload);
+  }
 }
