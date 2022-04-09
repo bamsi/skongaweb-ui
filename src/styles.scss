@@ -8,14 +8,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.container-fluid {
-  width: 100vh;
-}
-
-.grid {
-  display: flex;
-}
-
-.custom-fluid {
-  flex-grow: 1;
+.pointer {
+  cursor: pointer;
 }

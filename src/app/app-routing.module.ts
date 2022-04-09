@@ -42,6 +42,14 @@ const routes: Routes = [
             (module) => module.TeacherModule
           ),
       },
+      {
+        path: 'student',
+        data: { breadcrumb: 'Student Module' },
+        loadChildren: () =>
+          import('./views/student/student.module').then(
+            (module) => module.StudentModule
+          ),
+      },
     ],
   },
 ];

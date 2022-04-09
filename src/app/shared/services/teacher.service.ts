@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ObservableLike } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -24,5 +24,17 @@ export class TeacherService {
 
   registerTeacher(payload: any): Observable<any> {
     return this._http.post(`${this.base_uri}/register_teacher`, payload);
+  }
+
+  updateTeacher(payload: any) {
+    return this._http.post(`${this.base_uri}/update_teacher`, payload);
+  }
+
+  teacherSubjectAssigned(id: any): Observable<any> {
+    return this._http.get(`${this.base_uri}/teacher_subject/${id}`);
+  }
+
+  assignTeacherSubject(payload: any): Observable<any> {
+    return this._http.post(`${this.base_uri}/assign_teacher_subject`, payload);
   }
 }

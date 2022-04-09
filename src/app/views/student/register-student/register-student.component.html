@@ -1,0 +1,189 @@
+<p-card>
+  <p-tabView styleClass="tabview-custom">
+    <p-tabPanel>
+      <ng-template pTemplate="header">
+        <i class="pi pi-user-plus"></i>
+        <span class="ml-2"> Registered students</span>
+      </ng-template>
+
+      <div class="p-fluid grid mt-4">
+        <div class="field col-12 md:col-4">
+          <span class="p-float-label">
+            <p-dropdown
+              inputId="school_calendar"
+              [autoDisplayFirst]="false"
+              [options]="school_calendar?.results"
+              [(ngModel)]="school_calendar_id"
+              optionLabel="name"
+              optionValue="id"
+            ></p-dropdown>
+            <label for="class">Select Calendar Year </label>
+          </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <span class="p-float-label">
+            <p-dropdown
+              inputId="class_id"
+              [autoDisplayFirst]="false"
+              [options]="grades?.class"
+              [(ngModel)]="class_id"
+              optionLabel="name"
+              optionValue="id"
+              (onChange)="getStudents()"
+            ></p-dropdown>
+            <label for="class">Select Class</label>
+          </span>
+        </div>
+
+        <div
+          class="field col-12 md:col-4 flex justify-content-center align-content-center"
+          *ngIf="school_calendar_id && class_id"
+        >
+          <input
+            #myInput
+            type="file"
+            (change)="onFileChange($event)"
+            size="60"
+          />
+        </div>
+      </div>
+      <div class="p-fluid grid">
+        <div class="field col-12 md:col-4">
+          <p>
+            To upload new students to selected class, please upload .xlsx file.
+            <a
+              class="pi pi-file-excel"
+              routerLink="/assets/documents/sample.xlsx"
+              target="_blank"
+              >download sample</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <p-table
+        #dt
+        [value]="students?.data"
+        [rows]="10"
+        [paginator]="true"
+        [globalFilterFields]="[
+          'student_id',
+          'name',
+          'gender',
+          'phone',
+          'email'
+        ]"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true"
+      >
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            <h5 class="m-0">Record Students</h5>
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" placeholder="Search student..." />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="student_id">
+              Student ID <p-sortIcon field="student_id"></p-sortIcon>
+            </th>
+            <th pSortableColumn="name">
+              Name <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="gender">
+              Gender <p-sortIcon field="gender"></p-sortIcon>
+            </th>
+            <th pSortableColumn="phone">
+              Phone <p-sortIcon field="phone"></p-sortIcon>
+            </th>
+            <th pSortableColumn="email">
+              Email <p-sortIcon field="email"></p-sortIcon>
+            </th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-result>
+          <tr>
+            <td>{{ result.student_id }}</td>
+            <td>{{ result.name }}</td>
+            <td>{{ result.gender }}</td>
+            <td>{{ result.phone }}</td>
+            <td>{{ result.email }}</td>
+            <td>
+              <span class="pointer">
+                <i
+                  class="pi pi-plus"
+                  (click)="updateStudent(result)"
+                  pTooltip="click to update subject's assigned to teacher"
+                ></i>
+              </span>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            In total there are
+            {{ students?.data ? students.length : 0 }} students.
+          </div>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+  </p-tabView>
+</p-card>
+
+<!--display dialog-->
+<p-dialog
+  header="You are about to upload student data"
+  [(visible)]="display"
+  [style]="{ width: '60vw' }"
+>
+  <p-table
+    [value]="data_file"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <ng-template pTemplate="header">
+      <tr style="font-size: 11px">
+        <th>PREFERRED ID</th>
+        <th>FIRST NAAME</th>
+        <th>MIDDLE NAME</th>
+        <th>LAST NAME</th>
+        <th>GENDER</th>
+        <th>PHONE</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-student>
+      <tr style="font-size: 10px">
+        <td>{{ student.PREFERRED_ID }}</td>
+        <td>{{ student.FIRST_NAME }}</td>
+        <td>{{ student.MIDDLE_NAME }}</td>
+        <td>{{ student.LAST_NAME }}</td>
+        <td>{{ student.GENDER }}</td>
+        <td>{{ student.PHONE }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <ng-template pTemplate="footer">
+    <p-button
+      (click)="display = false"
+      label="Cancel"
+      styleClass="p-button-outlined p-button-danger"
+    ></p-button>
+    <p-button
+      (click)="uploadStudent()"
+      label="Upload data"
+      styleClass="p-button-info"
+    ></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-toast position="top-right" key="success"></p-toast>

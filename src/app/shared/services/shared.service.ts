@@ -23,4 +23,8 @@ export class SharedService {
   getGrade(institution_id: any): Observable<any> {
     return this._http.get(`${this.base_uri}/grade/${institution_id}`);
   }
+
+  getSchoolCalendar(institution_id: any): Observable<any> {
+    return this._http.get(`${this.base_uri}/school_calendar/${institution_id}`);
+  }
 }

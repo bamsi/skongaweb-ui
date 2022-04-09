@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import { TeacherService } from 'src/app/shared/services/teacher.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
@@ -19,7 +18,6 @@ export class AddTeacherComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _sharedSrv: SharedService,
-    private _teacherSvc: TeacherService,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig
   ) {

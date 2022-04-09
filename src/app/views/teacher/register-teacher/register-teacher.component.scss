@@ -8,3 +8,14 @@ p-radioButton {
 .align-right {
   text-align: right;
 }
+.icons {
+  display: flex;
+  gap: 30px;
+}
+.icons span {
+  transition: transform 5000ms;
+}
+.icons:hover span {
+  transform: scale(1.2);
+  cursor: pointer;
+}

@@ -26,7 +26,7 @@
           >
         </mat-grid-list>
 
-        <div class="p-ml-4">
+        <div class="ml-4">
           Overall Performance: Division
           <b>{{ result_summary?.division }} </b> Point
           <b>{{ result_summary?.point }}</b>
@@ -55,7 +55,7 @@
           </ng-template>
         </p-table>
         <form [formGroup]="parentFeebackForm">
-          <h2 class="p-mt-4">Parent's feedback</h2>
+          <h2 class="mt-4">Parent's feedback</h2>
           <div *ngIf="feedback">
             {{ feedback?.message }}
           </div>
@@ -64,7 +64,7 @@
               Please fill this form properly. The message will be sent to the
               class teacher.
             </p>
-            <div class="p-fluid p-grid p-mt-2">
+            <div class="p-fluid p-grid mt-2">
               <div class="p-field p-col-12 p-md-12">
                 <textarea
                   pInputTextarea
