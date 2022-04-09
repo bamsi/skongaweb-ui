@@ -5,6 +5,7 @@ import { TeacherService } from 'src/app/shared/services/teacher.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AddTeacherComponent } from '../dialog/add-teacher/add-teacher.component';
 import { UpdateTeacherComponent } from '../dialog/update-teacher/update-teacher.component';
+import { AssignSubjectComponent } from '../dialog/assign-subject/assign-subject.component';
 
 @Component({
   selector: 'app-register-teacher',
@@ -148,5 +149,36 @@ export class RegisterTeacherComponent implements OnInit {
     });
   }
 
-  updateSubject(data: any) {}
+  updateSubject(data: any) {
+    const ref = this.dialogService.open(AssignSubjectComponent, {
+      data: data,
+      header: 'Assign Subject',
+      width: '50%',
+    });
+
+    ref.onClose.subscribe((data) => {
+      if (data) {
+        this._teacherSvc.assignTeacherSubject(data).subscribe(
+          (data) => {
+            this.res = data;
+            this.messageService.add({
+              key: 'success',
+              severity: 'success',
+              summary: 'Success Message',
+              detail: this.res?.message,
+            });
+          },
+          (error) => {
+            this.messageService.add({
+              key: 'success',
+              severity: 'warn',
+              summary: 'Fail Message',
+              detail:
+                'Fail to register teacher, please check your input data or contract administrator!',
+            });
+          }
+        );
+      }
+    });
+  }
 }

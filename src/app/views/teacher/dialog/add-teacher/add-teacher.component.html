@@ -97,7 +97,7 @@
         </span>
       </div>
       <div class="field col-12 md:col-4">
-        <div class="form-group form-check p-mt-2">
+        <div class="form-group form-check mt-2">
           <input
             type="checkbox"
             [value]="false"
@@ -112,7 +112,7 @@
     <h3>Add Subject</h3>
     <div formArrayName="subjects">
       <div *ngFor="let sub of subjectsFormArr.controls; let i = index">
-        <div class="p-fluid grid p-mt-2" [formGroupName]="i">
+        <div class="p-fluid grid mt-2" [formGroupName]="i">
           <div class="field col-12 md:col-4">
             <span class="p-float-label">
               <p-dropdown

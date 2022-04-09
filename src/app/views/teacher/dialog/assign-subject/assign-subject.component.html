@@ -1,0 +1,85 @@
+<p-card>
+  <form [formGroup]="teacherForm">
+    <div class="p-fluid grid mt-2">
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <p-dropdown
+            inputId="subject"
+            [autoDisplayFirst]="false"
+            formControlName="subject"
+            optionLabel="name"
+            [options]="subjects?.subject"
+          ></p-dropdown>
+          <label for="subject">Subject</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <p-dropdown
+            inputId="class"
+            [autoDisplayFirst]="false"
+            formControlName="class"
+            optionLabel="name"
+            [options]="grades?.class"
+          ></p-dropdown>
+          <label for="class">Class</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-2">
+        <p-button
+          type="button"
+          icon="pi pi-plus"
+          iconPos="left"
+          label="Add"
+          (click)="addItem()"
+          styleClass="p-button-outlined p-button-primary"
+        ></p-button>
+      </div>
+    </div>
+  </form>
+
+  <p-fieldset legend="Assigned Subjects">
+    <div class="p-fluid grid mt-2">
+      <div class="field col-12 md:col-5">subject</div>
+      <div class="field col-12 md:col-5">Class</div>
+      <div class="field col-12 md:col-2">Action</div>
+    </div>
+    <div
+      class="p-fluid grid mt-2"
+      *ngFor="let sub of teacher_subjects; let i = index"
+    >
+      <div class="field col-12 md:col-5">{{ sub.subject }}</div>
+      <div class="field col-12 md:col-5">{{ sub.class }}</div>
+      <div class="field col-12 md:col-2">
+        <span class="pointer">
+          <i
+            class="pi pi-trash"
+            (click)="deleteItem(i)"
+            pTooltip="Click to activate or deactivate teacher"
+          ></i>
+        </span>
+      </div>
+    </div>
+  </p-fieldset>
+
+  <ng-template pTemplate="footer">
+    <div class="p-fluid grid justify-content-end">
+      <div class="field col-12 md:col-2">
+        <p-button
+          icon="pi pi-close"
+          (click)="closeDialog()"
+          label="Cancel"
+          styleClass="p-button-outlined p-button-danger"
+        ></p-button>
+      </div>
+      <div class="p-fluid field col-12 md:col-2">
+        <p-button
+          icon="pi pi-check"
+          (click)="submitForm()"
+          label="Save"
+          styleClass="p-button-info"
+        ></p-button>
+      </div>
+    </div>
+  </ng-template>
+</p-card>

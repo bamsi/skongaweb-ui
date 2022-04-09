@@ -11,13 +11,13 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 export class UpdateTeacherComponent implements OnInit {
   teacherForm!: FormGroup;
   private teacherData: any;
+
   constructor(
     private fb: FormBuilder,
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig
   ) {
     this.teacherData = this.config.data;
-    console.log(this.teacherData);
     this.teacherForm = this.initForm();
   }
 

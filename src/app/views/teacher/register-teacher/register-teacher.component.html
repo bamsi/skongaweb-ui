@@ -34,7 +34,7 @@
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
-        <h5 class="p-m-0">Registered Teacher</h5>
+        <h5 class="m-0">Registered Teacher</h5>
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
           <input pInputText type="text" placeholder="Search teacher..." />
@@ -85,22 +85,22 @@
           ></i>
         </td>
         <td class="icons">
-          <span>
+          <span class="pointer">
             <i
               class="pi pi-plus"
               (click)="updateSubject(result)"
               pTooltip="click to update subject's assigned to teacher"
             ></i>
           </span>
-          <span>
+          <span class="pointer">
             <i
-              class="pi pi-pencil"
+              class="pi pi-user-edit"
               (click)="updateTeacher(result)"
               pTooltip="click to update teacher's personal details"
             ></i>
           </span>
 
-          <span>
+          <span class="pointer">
             <i
               [ngClass]="result.active == 1 ? 'pi pi-trash' : 'pi pi-undo'"
               (click)="deleteTeacher(result)"

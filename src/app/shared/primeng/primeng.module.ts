@@ -19,6 +19,8 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { FieldsetModule } from 'primeng/fieldset';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 const prime_modules = [
   InputTextModule,
@@ -40,6 +42,8 @@ const prime_modules = [
   MessageModule,
   PanelMenuModule,
   DynamicDialogModule,
+  FieldsetModule,
+  MultiSelectModule,
 ];
 
 @NgModule({

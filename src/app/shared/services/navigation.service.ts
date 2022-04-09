@@ -44,6 +44,13 @@ export class NavigationService {
         permission: 'REGISTER_TEACHER',
       },
       {
+        name: 'Register Student',
+        type: 'link',
+        icon: 'group',
+        state: 'main/student/register-student',
+        permission: 'REGISTER_STUDENT',
+      },
+      {
         name: 'Profile',
         type: 'link',
         icon: 'person',
