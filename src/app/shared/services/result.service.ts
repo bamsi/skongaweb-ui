@@ -51,4 +51,37 @@ export class ResultService {
   submitResult(payload: any): Observable<any> {
     return this._http.post(`${this.base_uri}/update_student_result`, payload);
   }
+
+  /**
+   * post students performance
+   * @param payload
+   * @returns
+   */
+  savePerformance(payload: any): Observable<any> {
+    return this._http.post<any>(`${this.base_uri}/performance`, payload);
+  }
+
+  /**
+   * post performance comment
+   * @param payload
+   * @returns
+   */
+  savePerformanceComment(payload: any): Observable<any> {
+    return this._http.post<any>(
+      `${this.base_uri}/performance_comment`,
+      payload
+    );
+  }
+
+  getPerformance(payload: any): Observable<any> {
+    return this._http.get<any>(
+      `${this.base_uri}/performance/${payload.class_id}/${payload.student_id}/${payload.term_id}`
+    );
+  }
+
+  getComment(payload: any): Observable<any> {
+    return this._http.get<any>(
+      `${this.base_uri}/performance_comment/${payload.class_id}/${payload.student_id}/${payload.term_id}`
+    );
+  }
 }
