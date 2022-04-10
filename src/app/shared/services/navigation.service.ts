@@ -51,6 +51,13 @@ export class NavigationService {
         permission: 'REGISTER_STUDENT',
       },
       {
+        name: 'Student Performance',
+        type: 'link',
+        icon: 'assessment',
+        state: 'main/exam/student-performance',
+        permission: 'PUBLISH_RESULT',
+      },
+      {
         name: 'Profile',
         type: 'link',
         icon: 'person',
