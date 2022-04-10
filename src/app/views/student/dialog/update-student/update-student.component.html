@@ -1,1 +1,144 @@
-<p>update-student works!</p>
+<p-card>
+  <form [formGroup]="studentForm">
+    <div class="p-fluid grid">
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="first_name"
+            pInputText
+            formControlName="first_name"
+          />
+          <label for="First Name">First Name</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="middle_name"
+            pInputText
+            formControlName="middle_name"
+          />
+          <label for="Middle Name">Middle Name</label>
+        </span>
+      </div>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="last_name"
+            pInputText
+            formControlName="last_name"
+          />
+          <label for="Last Name">Last Name</label>
+        </span>
+      </div>
+    </div>
+    <div class="p-fluid grid">
+      <div class="field col-12 md:col-4">
+        <div>
+          <div class="d-horizontal">Gender:</div>
+          <p-radioButton
+            name="gender"
+            value="M"
+            inputId="male"
+            label="Male"
+            formControlName="gender"
+          ></p-radioButton>
+          <p-radioButton
+            name="gender"
+            value="F"
+            inputId="female"
+            label="Female"
+            formControlName="gender"
+          ></p-radioButton>
+        </div>
+      </div>
+
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="address"
+            pInputText
+            formControlName="address"
+          />
+          <label for="Address">Address</label>
+        </span>
+      </div>
+
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="phone"
+            pInputText
+            formControlName="phone"
+            pattern="[1-9]{12}"
+            required
+          />
+          <label for="Phone">Phone (eg. 255717777777)</label>
+        </span>
+      </div>
+    </div>
+    <div class="p-fluid grid">
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input
+            type="text"
+            id="email"
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+            pInputText
+            formControlName="email"
+            readonly
+            required
+          />
+          <label for="Email">Email</label>
+        </span>
+      </div>
+
+      <div class="field col-12 md:col-4">
+        <div>
+          <div class="d-horizontal">Active:</div>
+          <p-radioButton
+            name="active"
+            value="1"
+            inputId="active"
+            label="Active"
+            formControlName="active"
+          ></p-radioButton>
+          <p-radioButton
+            name="active"
+            value="0"
+            inputId="inactive"
+            label="Inactive"
+            formControlName="active"
+          ></p-radioButton>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <div class="p-fluid grid justify-content-end">
+      <div class="field col-12 md:col-2">
+        <p-button
+          icon="pi pi-close"
+          (click)="closeDialog()"
+          label="Cancel"
+          styleClass="p-button-outlined p-button-danger"
+        ></p-button>
+      </div>
+      <div class="p-fluid field col-12 md:col-2">
+        <p-button
+          icon="pi pi-save"
+          (click)="submitForm()"
+          label="Save"
+          styleClass="p-button-info"
+          [disabled]="!studentForm.valid"
+        ></p-button>
+      </div>
+    </div>
+  </ng-template>
+</p-card>
