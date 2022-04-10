@@ -41,4 +41,10 @@ export class StudentService {
       payload
     );
   }
+
+  getStudentsByClass(payload: any): Observable<any> {
+    return this._http.get(
+      `${this.base_uri}/student/${payload.class_id}/${payload.school_calendar_id}`
+    );
+  }
 }

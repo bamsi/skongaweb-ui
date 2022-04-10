@@ -1,0 +1,52 @@
+<p-card>
+  <div class="header-title">STUDENT NAME: {{ student?.name }}</div>
+
+  <form [formGroup]="commentForm">
+    <div class="p-fluid grid mt-2">
+      <div class="form-group form-check p-mt-2" style="color: rgb(192, 17, 17)">
+        <input
+          type="checkbox"
+          [value]="false"
+          formControlName="apply_all"
+          id="apply_all"
+        />
+        <label for="apply_all">Apply to All Students?</label>
+      </div>
+    </div>
+
+    <div class="p-fluid grid mt-2">
+      <div class="field col-12 md:12">
+        <span>CLASS TEACHERS’ REMARKS </span>
+        <p class="teacher-comment">{{ performance?.teacher_comment }}</p>
+      </div>
+    </div>
+
+    <div class="p-fluid grid mt-2">
+      <div class="field col-12 md:12">
+        <span>HEADMISTRESS’ REMARKS </span>
+        <textarea
+          pInputTextarea
+          id="message"
+          formControlName="comments"
+          rows="5"
+        ></textarea>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-close"
+      (click)="closeDialog()"
+      label="Cancel"
+      styleClass="p-button-text"
+    ></p-button>
+    <p-button
+      icon="pi pi-save"
+      (click)="submitForm()"
+      label="Save"
+      styleClass="p-button-info"
+      [disabled]="!commentForm.valid"
+    ></p-button>
+  </ng-template>
+</p-card>
