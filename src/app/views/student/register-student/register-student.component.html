@@ -111,14 +111,22 @@
         <ng-template pTemplate="body" let-result>
           <tr>
             <td>{{ result.student_id }}</td>
-            <td>{{ result.name }}</td>
+            <td>
+              {{
+                result.first_name +
+                  " " +
+                  result.middle_name +
+                  " " +
+                  result.last_name
+              }}
+            </td>
             <td>{{ result.gender }}</td>
             <td>{{ result.phone }}</td>
             <td>{{ result.email }}</td>
             <td>
               <span class="pointer">
                 <i
-                  class="pi pi-plus"
+                  class="pi pi-user-edit"
                   (click)="updateStudent(result)"
                   pTooltip="click to update subject's assigned to teacher"
                 ></i>

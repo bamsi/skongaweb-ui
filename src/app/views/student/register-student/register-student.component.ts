@@ -5,6 +5,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { StudentService } from 'src/app/shared/services/student.service';
 import * as XLSX from 'xlsx';
+import { UpdateStudentComponent } from '../dialog/update-student/update-student.component';
 
 @Component({
   selector: 'app-register-student',
@@ -117,5 +118,34 @@ export class RegisterStudentComponent implements OnInit {
     );
   }
 
-  updateStudent(student: any) {}
+  updateStudent(student: any) {
+    const ref = this.dialogService.open(UpdateStudentComponent, {
+      data: student,
+      header: 'Update Student',
+      width: '70%',
+    });
+
+    ref.onClose.subscribe((data) => {
+      if (data) {
+        this._studentSrv
+          .updateStudent(data, this.class_id, this.school_calendar_id)
+          .subscribe(
+            (response) => {
+              this.res = response;
+              this.students = { data: this.res?.data };
+              this.messageService.add({
+                key: 'success',
+                severity: 'success',
+                summary: 'Success Message',
+                detail: this.res?.message,
+              });
+            },
+            (error) => {
+              this.error =
+                'Failed to update student, please contact administrator';
+            }
+          );
+      }
+    });
+  }
 }

@@ -22,7 +22,23 @@ export class StudentService {
     );
   }
 
+  /**
+   * import bulk students data
+   * @param payload
+   * @returns
+   */
   importStudents(payload: any): Observable<any> {
     return this._http.post(`${this.base_uri}/import_students`, payload);
+  }
+
+  updateStudent(
+    payload: any,
+    class_id: any,
+    school_calendar_id: any
+  ): Observable<any> {
+    return this._http.post(
+      `${this.base_uri}/update_student/${class_id}/${school_calendar_id}`,
+      payload
+    );
   }
 }
