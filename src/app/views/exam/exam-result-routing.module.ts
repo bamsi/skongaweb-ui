@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PublishResultComponent } from './publish-result/publish-result.component';
 import { RegisterStudentSubjectComponent } from './register-student-subject/register-student-subject.component';
 import { StudentPerformanceComponent } from './student-performance/student-performance.component';
 import { StudentResultComponent } from './student-result/student-result.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'student-performance',
     component: StudentPerformanceComponent,
+  },
+  {
+    path: 'publish-result',
+    component: PublishResultComponent,
   },
 ];
 

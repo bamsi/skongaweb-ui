@@ -33,8 +33,6 @@ export class UploadResultComponent implements OnInit {
 
   ngOnInit() {
     var app_user = this.ls.getItem('APP_USER');
-    console.log(app_user);
-
     this.institution_id = app_user?.institution_id;
     //subscribe to the current exams
     this._resultSvc.getCurrentExams(this.institution_id).subscribe(

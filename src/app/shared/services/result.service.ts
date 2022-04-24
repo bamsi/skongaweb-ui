@@ -84,4 +84,36 @@ export class ResultService {
       `${this.base_uri}/performance_comment/${payload.class_id}/${payload.student_id}/${payload.term_id}`
     );
   }
+
+  getClassResult(payload: any): Observable<any> {
+    return this._http.get(
+      `${this.base_uri}/class_result/${payload.school_calendar_id}/${payload.exam_id}/${payload.class_id}`
+    );
+  }
+
+  //get final result
+  getFinalResult(payload: any): Observable<any> {
+    return this._http.get(
+      `${this.base_uri}/class_result/${payload.school_calendar_id}/${payload.class_id}`
+    );
+  }
+  //publish result
+  publishResult(payload: any): Observable<any> {
+    return this._http.post(`${this.base_uri}/publish_results`, payload);
+  }
+
+  //publish final result
+  publishFinalResult(payload: any): Observable<any> {
+    return this._http.post(`${this.base_uri}/publish_results_final`, payload);
+  }
+
+  //publish message
+  publishMessage(payload: any): Observable<any> {
+    return this._http.post(`${this.base_uri}/publish_message`, payload);
+  }
+
+  //publish message for final result
+  publishFinalResultMessage(payload: any): Observable<any> {
+    return this._http.post(`${this.base_uri}/publish_message_final`, payload);
+  }
 }

@@ -58,6 +58,13 @@ export class NavigationService {
         permission: 'PUBLISH_RESULT',
       },
       {
+        name: 'Publish Results',
+        type: 'link',
+        icon: 'published_with_changes',
+        state: 'main/exam/publish-result',
+        permission: 'PUBLISH_RESULT',
+      },
+      {
         name: 'Profile',
         type: 'link',
         icon: 'person',
