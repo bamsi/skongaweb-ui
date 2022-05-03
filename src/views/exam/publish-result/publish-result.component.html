@@ -1,0 +1,148 @@
+<p-card>
+  <div class="p-fluid grid">
+    <div class="field col-3 md:3">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="school_calendar"
+          [autoDisplayFirst]="false"
+          [options]="school_calendar?.results"
+          [(ngModel)]="school_calendar_id"
+          optionLabel="name"
+          optionValue="id"
+        ></p-dropdown>
+        <label for="class">Select Calendar Year </label>
+      </span>
+    </div>
+
+    <div class="field col-1 md:2">
+      <div class="p-field-checkbox mt-3">
+        <p-checkbox
+          [(ngModel)]="is_final"
+          binary="true"
+          inputId="isfinal"
+        ></p-checkbox>
+        <label for="isfinal">Final Report</label>
+      </div>
+    </div>
+
+    <div class="field col-3 md:3">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="exam_id"
+          [autoDisplayFirst]="false"
+          [options]="exam?.current_exams"
+          [(ngModel)]="exam_id"
+          optionLabel="name"
+          optionValue="id"
+          [disabled]="is_final"
+        ></p-dropdown>
+        <label for="current_exam">Current Exam</label>
+      </span>
+    </div>
+
+    <div class="field col-3 md:3">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="class_id"
+          [autoDisplayFirst]="false"
+          [options]="grades?.class"
+          [(ngModel)]="class_id"
+          optionLabel="name"
+          optionValue="id"
+        ></p-dropdown>
+        <label for="class">Select Class</label>
+      </span>
+    </div>
+
+    <div class="field col-2 md:1">
+      <p-button
+        label="Go"
+        icon="pi pi-search"
+        styleClass="p-button"
+        (click)="getStudentResults()"
+      ></p-button>
+    </div>
+  </div>
+
+  <div class="p-fluid grid" *ngIf="display_button">
+    <div class="col-6 md:3"></div>
+    <div class="col-2 md:3">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-envelope"
+        iconPos="left"
+        label="Send SMS"
+        (click)="sendSMS()"
+        pTooltip="Once clicked, results will be seen by the parents"
+        tooltipPosition="bottom"
+        class="p-button-warning"
+      ></button>
+    </div>
+    <div class="col-2 md:3" *ngIf="published == 0">
+      <p-confirmDialog></p-confirmDialog>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-external-link"
+        iconPos="left"
+        label="Publish Results"
+        (click)="publishResults()"
+        pTooltip="Once published, results will be seen by the parents"
+        tooltipPosition="bottom"
+        class="p-button-info"
+      ></button>
+    </div>
+    <div class="col-2 md:3">
+      <p-confirmDialog></p-confirmDialog>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-chart-line"
+        iconPos="left"
+        label="Report Summary"
+        (click)="displaySummary()"
+        pTooltip="Display individual report of all students"
+        tooltipPosition="bottom"
+        class="p-button-success"
+      ></button>
+    </div>
+  </div>
+
+  <!-- display individual exam results  -->
+  <p-table [columns]="cols" [value]="student_results">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex" *ngIf="display_button">
+        <button
+          type="button"
+          pButton
+          pRipple
+          icon="pi pi-file-excel"
+          (click)="exportExcel()"
+          class="p-button-warning p-mr-2"
+          pTooltip="Download excel file"
+          tooltipPosition="bottom"
+          label="Download"
+        ></button>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col?.field">
+          {{ col?.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{ rowData[col?.field] }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <!-- end individual exam result -->
+</p-card>
+
+<p-toast position="top-right" key="success"></p-toast>

@@ -1,0 +1,69 @@
+<p-card>
+  <div class="header-title">STUDENT NAME: {{ student.name }}</div>
+  <form [formGroup]="performanceForm">
+    <div class="p-fluid grid mt-2">
+      <div
+        class="field col-12 md:col-4 form-check mt-2"
+        style="color: rgb(192, 17, 17)"
+      >
+        <input
+          type="checkbox"
+          [value]="false"
+          formControlName="apply_all"
+          id="apply_all"
+        />
+        <label for="apply_all">Apply to All Students?</label>
+      </div>
+    </div>
+
+    <div *ngFor="let item of t.controls; let i = index">
+      <div class="p-fluid grid mt-2" [formGroup]="item">
+        <div class="field col-12 md:col-8 md-10">
+          {{ items[i].description }}
+        </div>
+
+        <div class="field col-12 md:col-4 md-2">
+          <span class="p-float-label">
+            <p-dropdown
+              inputId="grade"
+              formControlName="grade"
+              optionLabel="name"
+              optionValue="code"
+              [options]="grades"
+              [autoDisplayFirst]="false"
+            ></p-dropdown>
+            <label for="grade">Grade</label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-fluid grid mt-2">
+      <div class="field col-12 md:col-12 md-12">
+        <span>Class Teacher's Comments </span>
+        <textarea
+          pInputTextarea
+          id="message"
+          formControlName="comments"
+          rows="5"
+        ></textarea>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-close"
+      (click)="closeDialog()"
+      label="Cancel"
+      styleClass="p-button-text"
+    ></p-button>
+    <p-button
+      icon="pi pi-save"
+      (click)="submitForm()"
+      label="Save"
+      styleClass="p-button-info"
+      [disabled]="!performanceForm.valid"
+    ></p-button>
+  </ng-template>
+</p-card>

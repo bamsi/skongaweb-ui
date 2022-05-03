@@ -1,0 +1,28 @@
+<p-table
+  [value]="divSummary"
+  styleClass="p-datatable-gridlines"
+  responsiveLayout="scroll"
+>
+  <ng-template pTemplate="caption"> DIVISION PERFORMANCE SUMMARY </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>SEX</th>
+      <th>I</th>
+      <th>II</th>
+      <th>III</th>
+      <th>IV</th>
+      <th>0</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>F</td>
+      <td>{{ item[I] }}</td>
+      <td>{{ item[II].F }}</td>
+      <td>{{ item[III].F }}</td>
+      <td>{{ item[IV].F }}</td>
+      <td>{{ item[0].F }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary"> Footer </ng-template>
+</p-table>

@@ -1,0 +1,112 @@
+<p-card>
+  <div class="p-fluid grid">
+    <div class="field col-12 md:col-3">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="school_calendar"
+          [autoDisplayFirst]="false"
+          [options]="school_calendar?.results"
+          [(ngModel)]="school_calendar_id"
+          optionLabel="name"
+          optionValue="id"
+          (onChange)="loadTerms(school_calendar_id)"
+        ></p-dropdown>
+        <label for="class">Select Calendar Year </label>
+      </span>
+    </div>
+
+    <div class="field col-12 md:col-3">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="class_id"
+          [autoDisplayFirst]="false"
+          [options]="grades?.class"
+          [(ngModel)]="class_id"
+          optionLabel="name"
+          optionValue="id"
+        ></p-dropdown>
+        <label for="class">Select Class</label>
+      </span>
+    </div>
+
+    <div class="field col-12 md:col-3">
+      <span class="p-float-label">
+        <p-dropdown
+          inputId="term_id"
+          [autoDisplayFirst]="false"
+          [options]="school_term?.results"
+          [(ngModel)]="term_id"
+          optionLabel="name"
+          optionValue="id"
+        ></p-dropdown>
+        <label for="class">Select Term </label>
+      </span>
+    </div>
+
+    <div class="field col-12 md:col-1">
+      <p-button
+        label="Go"
+        icon="pi pi-search"
+        styleClass="p-button-lg"
+        (click)="loadStudents()"
+      ></p-button>
+    </div>
+  </div>
+
+  <p-table
+    #dt
+    [value]="student_list"
+    [globalFilterFields]="['name', 'gender']"
+    [rowHover]="true"
+    dataKey="id"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Record Student Results</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" placeholder="Search student..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem">SN</th>
+        <th pSortableColumn="name">
+          Name <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="gender">
+          Gender <p-sortIcon field="gender"></p-sortIcon>
+        </th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-result let-index="rowIndex">
+      <tr>
+        <td>{{ index + 1 }}</td>
+        <td>{{ result.name }}</td>
+        <td>{{ result.gender }}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-plus"
+            class="p-button-rounded p-button-text"
+            (click)="openPerformance(result)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-comments"
+            class="p-button-rounded p-button-text"
+            (click)="openComment(result)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
+
+<p-toast position="top-right" key="success"></p-toast>
