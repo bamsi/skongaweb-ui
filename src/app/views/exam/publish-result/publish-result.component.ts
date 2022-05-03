@@ -6,6 +6,7 @@ import { LocalStoreService } from 'src/app/shared/services/ls.service';
 import { ResultService } from 'src/app/shared/services/result.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { StudentService } from 'src/app/shared/services/student.service';
+import { ResultSummaryComponent } from './dialog/result-summary/result-summary.component';
 
 @Component({
   selector: 'app-publish-result',
@@ -314,5 +315,12 @@ export class PublishResultComponent implements OnInit {
     });
   }
 
-  displaySummary() {}
+  displaySummary() {
+    const ref = this.dialogService.open(ResultSummaryComponent, {
+      data: this.student_results,
+      header: 'Update Student',
+      width: '70%',
+      showHeader: false,
+    });
+  }
 }

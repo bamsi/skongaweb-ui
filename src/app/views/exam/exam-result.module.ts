@@ -10,6 +10,7 @@ import { StudentPerformanceComponent } from './student-performance/student-perfo
 import { AddPerformanceComponent } from './dialog/add-performance/add-performance.component';
 import { PrincipalAssessmentComponent } from './dialog/principal-assessment/principal-assessment.component';
 import { PublishResultComponent } from './publish-result/publish-result.component';
+import { ResultSummaryComponent } from './publish-result/dialog/result-summary/result-summary.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { PublishResultComponent } from './publish-result/publish-result.componen
     AddPerformanceComponent,
     PrincipalAssessmentComponent,
     PublishResultComponent,
+    ResultSummaryComponent,
   ],
   imports: [
     CommonModule,
