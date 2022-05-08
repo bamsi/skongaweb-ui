@@ -1,6 +1,6 @@
 <p-card>
   <div class="p-fluid grid">
-    <div class="field col-3 md:3">
+    <div class="field col-3 md:col-6">
       <span class="p-float-label">
         <p-dropdown
           inputId="school_calendar"
@@ -14,7 +14,7 @@
       </span>
     </div>
 
-    <div class="field col-1 md:2">
+    <div class="field col-1 md:col-6">
       <div class="p-field-checkbox mt-3">
         <p-checkbox
           [(ngModel)]="is_final"
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="field col-3 md:3">
+    <div class="field col-3 md:col-6">
       <span class="p-float-label">
         <p-dropdown
           inputId="exam_id"
@@ -40,7 +40,7 @@
       </span>
     </div>
 
-    <div class="field col-3 md:3">
+    <div class="field col-3 md:col-6">
       <span class="p-float-label">
         <p-dropdown
           inputId="class_id"
@@ -54,7 +54,7 @@
       </span>
     </div>
 
-    <div class="field col-2 md:1">
+    <div class="field col-2 md:col-6">
       <p-button
         label="Go"
         icon="pi pi-search"
@@ -65,8 +65,8 @@
   </div>
 
   <div class="p-fluid grid" *ngIf="display_button">
-    <div class="col-6 md:3"></div>
-    <div class="col-2 md:3">
+    <div class="col-6 md:col-6"></div>
+    <div class="col-2 md:col-6">
       <button
         pButton
         type="button"
@@ -79,7 +79,7 @@
         class="p-button-warning"
       ></button>
     </div>
-    <div class="col-2 md:3" *ngIf="published == 0">
+    <div class="col-2 md:col-6" *ngIf="published == 0">
       <p-confirmDialog></p-confirmDialog>
       <button
         pButton
@@ -93,7 +93,7 @@
         class="p-button-info"
       ></button>
     </div>
-    <div class="col-2 md:3">
+    <div class="col-2 md:col-6">
       <p-confirmDialog></p-confirmDialog>
       <button
         pButton

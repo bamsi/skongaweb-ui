@@ -31,12 +31,11 @@ export class ResultSummaryComponent implements OnInit {
           (item: { division: string; gender: any }) =>
             div == item.division.split(' ')[0] && sex == item.gender
         );
+        console.log(items);
         arr[sex] = items.length;
       }
       const obj = Object.assign({}, arr);
       this.divSummary[div] = obj;
     }
-
-    console.log(this.divSummary);
   }
 }
