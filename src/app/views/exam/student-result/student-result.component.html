@@ -8,23 +8,21 @@
       </ng-template>
 
       <ng-template pTemplate="content">
-        <mat-grid-list cols="2" rowHeight="2.5rem">
-          <mat-grid-tile
-            >Stuent Name :
-            <b>{{ student_details?.student_name }} </b></mat-grid-tile
-          >
-          <mat-grid-tile
-            >Class: <b>{{ student_details?.class }}</b></mat-grid-tile
-          >
-          <mat-grid-tile
-            >Test Name: <b>{{ student_details?.exam_name }}</b></mat-grid-tile
-          >
-          <mat-grid-tile
-            >TERM: <b>{{ student_details?.term }}</b
-            >&nbsp;OF&nbsp;
-            <b>{{ student_details?.academic_year }}</b></mat-grid-tile
-          >
-        </mat-grid-list>
+        
+        <div class="p-fluid grid">
+           <div class="col-12 md:col-6">
+            Student Name : <b>{{ student_details?.student_name }}</b>
+           </div>
+           <div class="col-12 md:col-6">
+            Class: <b>{{ student_details?.class }}</b>
+           </div>
+           <div class="col-12 md:col-6">
+            Test Name: <b>{{ student_details?.exam_name }}</b>
+          </div>
+          <div class="col-12 md:col-6">
+            Term : <b>{{ student_details?.term }} of {{ student_details?.academic_year }}</b>
+          </div>
+        </div>
 
         <div class="ml-4">
           Overall Performance: Division
@@ -94,7 +92,7 @@
       </ng-template>
       <ng-template pTemplate="body">
         <ngx-extended-pdf-viewer
-          [src]="'assets/report/4/2-2-109.pdf'"
+          [src]=""
           [useBrowserLocale]="true"
           [height]="'100%'"
           [useBrowserLocale]="true"

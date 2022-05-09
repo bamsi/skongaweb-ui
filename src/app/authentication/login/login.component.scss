@@ -7,6 +7,13 @@
     background: #1a6388;
     color: antiquewhite;
   }
+
+  @media only screen and (min-width: 700px) {
+    /* css rules */
+    .p-card {
+      min-width: 40rem;
+    }
+  } 
 }
 
 .copyright {
